@@ -1,1 +1,135 @@
-404
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: White;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 20px;
+        }
+        .channel {
+            background-color: #222;
+            border: 3px solid red;
+            border-radius: 10px;
+            text-align: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .channel img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+        .category img, .channel img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 20px 4px gba(0, 0, 0, 0.5);
+            }
+            .channel-card p {
+            margin-top: 10px;
+            font-size: 10px;
+        }
+        .channel-title {
+            padding: 10px 0;
+            font-size: 10px;
+        }
+        .video-player {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+        .video-player video {
+            width: 100%;
+            height: auto;
+        }
+        .close-btn {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+            text-align: center;
+            display: block;
+            width: 100%;
+            border-radius: 5px;
+        }
+        iframe {
+            width: 100%;
+            height:680px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+        <div class="channel" data-video="https://mdfardin857875557.github.io/NEWS-TV/Index.html">
+            <img src="https://i.postimg.cc/k4Xk258T/IMG-20241123-224459.png" alt="BD NEWS">
+            <p>BD NEWS</p>
+        </div>
+        <div class="channel" data-video="https://mdfardin857875557.github.io/Entertainment-tv/Index.html">
+            <img src="https://i.postimg.cc/85Nt5n8D/images-17.png" alt="Entertainment TV">
+            <p>Entertainment TV</p>
+        </div>
+        <div class="channel" data-video="https://mdfardin857875557.github.io/Movie-tv/Index.html">
+            <img src="https://i.postimg.cc/pTW47dLD/1732383498491.jpg" alt="Movie's TV">
+            <p>Movie's TV</p>
+        </div>
+        <div class="channel" data-video="https://mdfardin857875557.github.io/Live-Sports/Index.html">
+            <img src="https://i.postimg.cc/Sxzn2Sq7/1732384231389.jpg" alt="Sports TV">
+            <p>Sports TV</p>
+        </div>
+        <div class="channel" data-video="https://mdfardin857875557.github.io/LIVE-KIDS/Index.html">
+            <img src="https://i.postimg.cc/MKgT8CRc/IMG-20241123-235826.png" alt="Kids TV">
+            <p>Kids TV</p>
+        </div>
+        <div class="channel" data-video="https://mdfardin857875557.github.io/Information-live/Index.html">
+            <img src="https://i.postimg.cc/50JgKKpT/1732385855404.jpg" alt="Infotainment">
+            <p>Infotainment</p>
+        </div>
+    </div>
+    <div class="video-player" id="videoPlayer">
+        <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+
+    </div>
+
+    <script>
+        const channels = document.querySelectorAll('.channel');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoFrame = document.getElementById('videoFrame');
+        const closeBtn = document.getElementById('closeBtn');
+
+        channels.forEach(channel => {
+            channel.addEventListener('click', () => {
+                const videoUrl = channel.getAttribute('data-video');
+                videoFrame.src = videoUrl;
+                videoPlayer.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            videoFrame.src = ''; // Stop the video
+            videoPlayer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
